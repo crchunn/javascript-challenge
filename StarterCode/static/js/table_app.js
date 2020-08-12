@@ -40,11 +40,4 @@ function runEnter() {
     var filteredData = incidents.filter(incident => incident.datetime === inputValue);
 
     console.log(filteredData);
-
-
-
-    grades.forEach(([student, grade]) => {
-        var row = tbody.append("tr");
-        row.append("td").text(student);
-        row.append("td").text(grade);
-    }); * /
+}
