@@ -3,14 +3,10 @@
 var table = d3.select("table");
 var tbody = d3.select("tbody");
 table.attr("class", "table table-striped");
+// console.log(data)
 
-// Use D3 to select the table
 
-// Use D3 to set the table class to `table table-striped`
 
-// BONUS: Dynamic table
-// Loop through an array of grades and build the entire table body from scratch
-var incidents = data;
 
 // Select the button
 var button = d3.select("#button");
@@ -21,6 +17,16 @@ var form = d3.select("#form");
 // Create event handlers 
 button.on("click", runEnter);
 form.on("submit", runEnter);
+
+data.forEach((incident) => {
+    var row = tbody.append("tr");
+    Object.entries(incident).forEach(([key, value]) => {
+        var cell = row.append("td");
+        cell.text(value);
+    });
+});
+
+// console.log(incident)
 
 // Complete the event handler function for the form
 function runEnter() {
@@ -35,22 +41,11 @@ function runEnter() {
     var inputValue = inputElement.property("value");
 
     console.log(inputValue);
-    console.log(incidents);
+    // console.log(incident);
 
     var filteredData = incidents.filter(incident => incident.datetime === inputValue);
 
     console.log(filteredData);
 
 
-
-    incidents.forEach(([datetime, city, state, country, shape, durationMinutes, comments]) => {
-        var row = tbody.append("tr");
-        row.append("td").text(datetime);
-        row.append("td").text(city);
-        row.append("td").text(state);
-        row.append("td").text(country);
-        row.append("td").text(shape);
-        row.append("td").text(durationMinutes);
-        row.append("td").text(comments);
-    });
 }
